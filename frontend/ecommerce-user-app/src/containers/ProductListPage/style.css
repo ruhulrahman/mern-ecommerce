@@ -1,0 +1,26 @@
+.productContainer{
+    width: 200px;
+}
+.productImageContainer{
+    width: 100%;
+}
+.productImageContainer img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.productInfo {
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+}
+.productName {
+    font-weight: 700;
+    color: #000;
+}
+.productRatingBar{
+
+}
+.productPrice {
+
+}
