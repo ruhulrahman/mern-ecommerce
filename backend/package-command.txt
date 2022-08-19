@@ -1,0 +1,5 @@
+1.  npm install --save express express-validator mongoose dotenv nodemon body-parser
+2.  npm install --save bcrypt jsonwebtoken slugify
+3.  npm install --save multer // for file upload
+4.  npm install --save shortid // for making file name unique id
+5.  npm install --save cors

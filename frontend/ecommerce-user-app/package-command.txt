@@ -1,0 +1,5 @@
+1.  npx create-react-app ecommerce-user-app
+2.  npm install --save react-bootstrap bootstrap react-router-dom@6 sass
+3.  npm i --save @reduxjs/toolkit react-redux
+4.  npm i --save axios
+5.  npm i --save react-select

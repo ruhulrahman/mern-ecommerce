@@ -1,0 +1,42 @@
+
+.hand {
+    cursor: pointer;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #27292c;
+    color: #FFF;
+    padding-top: 65px;
+    box-shadow: 0 0 5px #00262d;
+}
+.sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sidebar ul li {}
+.sidebar ul li a{
+    padding: 5px 10px;
+    border-radius: 5px 0 0 5px;
+    display: block;
+    box-sizing: border-box;
+    margin: 5px 0px 5px 10px;
+    -webkit-border-radius: 5px 0 0 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    -ms-border-radius: 5px 0 0 5px;
+    -o-border-radius: 5px 0 0 5px;
+}
+.sidebar ul li a.active{
+    background-color: #217e17c2;
+}
+
+.key {
+    font-size: 12px;
+    font-weight: bold;
+}
+.value {
+    font-size: 14px;
+}
