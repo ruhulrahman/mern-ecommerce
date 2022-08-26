@@ -55,12 +55,12 @@ exports.signin = (req, res) => {
 
         if (user) {
             if (user.authenticate(req.body.password) && user.role == 'admin') {
-                // const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
-                const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn: 60 });
+                const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
+                // const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, { expiresIn: 60 });
                 const { _id, firstName, lastName, email, role, fullName } = user
 
-                // res.cookie('token', token, { expiresIn: '1h' })
-                res.cookie('token', token, { expiresIn: 60 })
+                res.cookie('token', token, { expiresIn: '1d' })
+                // res.cookie('token', token, { expiresIn: 60 })
 
                 return res.status(200).json({
                     message: 'Admin authticated successfully',
