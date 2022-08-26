@@ -40,3 +40,16 @@
 .value {
     font-size: 14px;
 }
+.font-size-40 {
+    font-size: 40px !important;
+}
+
+.text-purple {
+    color: purple;
+}
+.ml-10 {
+    margin-left: 10px !important;
+}
+.ml-15 {
+    margin-left: 15px !important;
+}

@@ -21,7 +21,7 @@ const MenuHeader = (props) => {
             } */}
             {
               item.parentId ? 
-              <NavLink to={item.slug}>{item.name}</NavLink> :
+              <NavLink to={`/${item.slug}`}>{item.name}</NavLink> :
                <span>{item.name}</span>
             }
             {item.children.length > 0 ? (

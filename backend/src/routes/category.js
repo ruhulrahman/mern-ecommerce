@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { addCategory, getCategory } = require('../controller/categoryController')
+const { addCategory, getCategory, updateCategory, deleteCategory } = require('../controller/categoryController')
 const { requireSignin, adminMiddleware, adminOrUserMiddleware } = require('../middleware')
 const { addCategoryValidator, isAddCategoryValidated } = require('../validators/categoryValidator')
 const multer  = require('multer')
@@ -21,6 +21,8 @@ const upload = multer({ storage: storage })
 // router.post('/category/create', addCategoryValidator, isAddCategoryValidated, requireSignin, adminMiddleware, upload.single('image'), addCategory)
 router.post('/category/create', requireSignin, adminMiddleware, upload.single('image'), addCategory)
 router.get('/category/getCategory', requireSignin, adminOrUserMiddleware, getCategory)
+router.post('/category/update', requireSignin, adminMiddleware, upload.array('image'), updateCategory)
+router.post('/category/delete', requireSignin, adminMiddleware, deleteCategory)
 
 
 module.exports = router

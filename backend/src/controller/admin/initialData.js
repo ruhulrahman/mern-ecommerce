@@ -8,8 +8,8 @@ function createCategories(categories, parentId = null) {
 
     let mycategoryList
 
-    if (parentId == null) {
-        mycategoryList = categories.filter(item => item.parentId == undefined || item.parentId == null)
+    if (parentId === null || parentId === 'null') {
+        mycategoryList = categories.filter(item => item.parentId == undefined || item.parentId == 'undefined' || item.parentId == null || item.parentId == 'null' || !item.parentId)
     } else {
         mycategoryList = categories.filter(item => item.parentId == parentId)
     }
@@ -19,7 +19,8 @@ function createCategories(categories, parentId = null) {
             _id: item._id,
             name: item.name,
             slug: item.slug,
-            parentId: item.parentId,
+            type: item.type ? item.type : null,
+            parentId: item.parentId ? item.parentId: null,
             children: createCategories(categories, item._id),
         })
     })
@@ -35,6 +36,7 @@ exports.initialData = async (req, res) => {
                                 //     model: Category
                                 // })
                                 .exec()
+    // console.log({categories})
     const products = await Product.find({})
                         .select('_id name slug description price quantity productImages category')
                         // .populate('category')

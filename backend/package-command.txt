@@ -3,3 +3,4 @@
 3.  npm install --save multer // for file upload
 4.  npm install --save shortid // for making file name unique id
 5.  npm install --save cors
+6.  npm i shortid --save

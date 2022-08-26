@@ -3,3 +3,7 @@
 3.  npm i --save @reduxjs/toolkit react-redux
 4.  npm i --save axios
 5.  npm i --save react-select
+6.  npm i react-checkbox-tree --save
+7.  npm i react-icons --save
+//8.  npm i react-sweetalert2 --save
+8.  npm install sweetalert2 --save
