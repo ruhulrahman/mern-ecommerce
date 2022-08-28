@@ -1,5 +1,6 @@
 import RestApi from "../helpers/axios"
 import { categoryConstants } from "./constants"
+import { getInitialData } from "./initialData.actions"
 
 export const getAllCategory = () => {
     return async (dispatch) => {
@@ -50,25 +51,17 @@ export const addCategory = (formData) => {
 
 export const updateCategory = (formData) => {
     return async (dispatch) => {
-        // dispatch({ type: categoryConstants.UPDATE_CATEGORY_REQUEST })
+        dispatch({ type: categoryConstants.UPDATE_CATEGORY_REQUEST })
         const res = await RestApi.post('/category/update', formData)
         console.log('res.data', res.data)
         if (res.status === 200) {
-            return true
-            // dispatch({
-            //     type: categoryConstants.UPDATE_CATEGORY_SUCCESS,
-            //     payload: {
-            //         message: res.data.message,
-            //         category: res.data.data,
-            //     }
-            // })
+            dispatch({ type: categoryConstants.UPDATE_CATEGORY_SUCCESS })
+            dispatch(getInitialData())
+            // return true
         } else {
             if (res.status === 400) {
-                return false
-                // dispatch({
-                //     type: categoryConstants.UPDATE_CATEGORY_FAILURE,
-                //     error: res.data.error
-                // })
+                dispatch({ type: categoryConstants.UPDATE_CATEGORY_FAILURE })
+                // return false
             } 
         }
     }

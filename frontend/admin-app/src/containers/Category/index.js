@@ -16,6 +16,7 @@ import { FcOpenedFolder, FcFolder, FcFile } from "react-icons/fc";
 import { FaAngleRight, FaAngleDown, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import "../style.css";
+import { UpdateCategory } from "./UpdateCategory";
 
 const Category = (props) => {
 
@@ -209,11 +210,11 @@ const Category = (props) => {
 
     // console.log('save category', formData)
     dispatch(updateCategory(formData))
-    .then(result => {
-      if(result) {
-        dispatch(getInitialData())
-      }
-    })
+    // .then(result => {
+    //   if(result) {
+    //     dispatch(getInitialData())
+    //   }
+    // })
 
     closeUpdateCategoryModal()
   }
@@ -312,7 +313,7 @@ const Category = (props) => {
 
 
       {/* Start Update Category */}
-      <MyModal modalTitle="Update Category" size="lg" show={updateCategoryModal} closeModal={closeUpdateCategoryModal} handleClose={updateCategoryData}>
+      {/* <MyModal modalTitle="Update Category" size="lg" show={updateCategoryModal} closeModal={closeUpdateCategoryModal} handleClose={updateCategoryData}>
         <h3>Expanded Categories</h3>
         {
           expandedArray.length > 0 && expandedArray.map((item, index) => {
@@ -332,7 +333,6 @@ const Category = (props) => {
               <Col>
                 <Form.Label>Type {item.type}</Form.Label>
                 <Select placeholder="Select Type" className="mb-3" 
-                // defaultValue={item.type}
                 value={ categoryTypeList.find(option => option.value === item.type) }
                 onChange={(e) => handleCategoryInput('type', e.value, index, 'expanded')} 
                 options={categoryTypeList} />
@@ -364,7 +364,6 @@ const Category = (props) => {
               <Col>
                 <Form.Label>Type {item.type}</Form.Label>
                 <Select placeholder="Select Type" className="mb-3" 
-                // defaultValue={item.categoryType} 
                 value={ categoryTypeList.find(option => option.value === item.type) }
                 onChange={(e) => handleCategoryInput('type', e.value, index, 'checked')} 
                 options={categoryTypeList} />
@@ -374,8 +373,17 @@ const Category = (props) => {
           })
         }
 
-        {/* <InputFile label="Upload Image" type="file" name="image" onChange={handleCategoryImage} errorMsg="" /> */}
-      </MyModal>
+      </MyModal> */}
+      <UpdateCategory 
+        updateCategoryModal={updateCategoryModal}
+        closeUpdateCategoryModal={closeUpdateCategoryModal}
+        updateCategoryData={updateCategoryData}
+        expandedArray={expandedArray}
+        categoryList={categoryList}
+        handleCategoryInput={handleCategoryInput}
+        categoryTypeList={categoryTypeList}
+        checkedArray={checkedArray}
+      />
       {/* End Update Category */}
     </Layout>
   );

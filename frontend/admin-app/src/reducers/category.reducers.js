@@ -52,6 +52,7 @@ const builNewCategories = (parentId, categories, category) => {
 }
 
 const categoryReducer = (state = initState, action) => {
+    
     if (action.type === categoryConstants.GET_CATEGORY_REQUEST) {
         state = {
             ...state,
@@ -102,6 +103,27 @@ const categoryReducer = (state = initState, action) => {
             ...state,
             loading: false,
             error: action.payload.error,
+        }
+    }
+
+    if (action.type === categoryConstants.UPDATE_CATEGORY_REQUEST) {
+        state = {
+            ...state,
+            loading: true,
+        }
+    }
+
+    if (action.type === categoryConstants.UPDATE_CATEGORY_SUCCESS) {
+        state = {
+            ...state,
+            loading: false,
+        }
+    }
+
+    if (action.type === categoryConstants.UPDATE_CATEGORY_FAILURE) {
+        state = {
+            ...state,
+            loading: false,
         }
     }
 

@@ -12,7 +12,6 @@ const RestApi = axios.create({
     // 'Accept': 'application/json',
     Authorization: token ? `Bearer ${token}` : "",
     // 'Access-Control-Allow-Origin': '*',
-    // 'X-Custom-Header': 'foobar'
   },
 });
 
