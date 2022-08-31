@@ -18,7 +18,9 @@ export const getAllCategory = () => {
             if (res.status === 400) {
                 dispatch({
                     type: categoryConstants.GET_CATEGORY_FAILURE,
-                    error: res.data.error
+                    payload: {
+                        error: res.data.error
+                    }
                 })
             } 
         }
@@ -42,7 +44,9 @@ export const addCategory = (formData) => {
             if (res.status === 400) {
                 dispatch({
                     type: categoryConstants.ADD_CATEGORY_FAILURE,
-                    error: res.data.error
+                    payload: {
+                        error: res.data.error
+                    }
                 })
             } 
         }
@@ -60,7 +64,12 @@ export const updateCategory = (formData) => {
             // return true
         } else {
             if (res.status === 400) {
-                dispatch({ type: categoryConstants.UPDATE_CATEGORY_FAILURE })
+                dispatch({
+                    type: categoryConstants.UPDATE_CATEGORY_FAILURE,
+                    payload: {
+                        error: res.data.error
+                    }
+                })
                 // return false
             } 
         }
@@ -68,14 +77,21 @@ export const updateCategory = (formData) => {
 }
 
 export const deleteCategoryData = (checkedIds) => {
-    return async () => {
-        console.log('Action - checkedIds', checkedIds)
+    return async (dispatch) => {
+        dispatch({ type: categoryConstants.DELETE_CATEGORY_REQUEST })
         const res = await RestApi.post('/category/delete', { categoryIds: checkedIds})
         console.log('res.data', res.data)
         if (res.status === 200) {
+            dispatch({ type: categoryConstants.DELETE_CATEGORY_SUCCESS })
             return true
         } else {
             if (res.status === 400) {
+                dispatch({
+                    type: categoryConstants.DELETE_CATEGORY_FAILURE,
+                    payload: {
+                        error: res.data.error
+                    }
+                })
                 return false
             } 
         }

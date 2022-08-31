@@ -17,6 +17,8 @@ import { FaAngleRight, FaAngleDown, FaPlusCircle, FaMinusCircle } from "react-ic
 import Swal from 'sweetalert2'
 import "../style.css";
 import { UpdateCategory } from "./UpdateCategory";
+import { RiEdit2Fill } from "react-icons/ri"
+import { MdDeleteForever } from "react-icons/md"
 
 const Category = (props) => {
 
@@ -290,8 +292,8 @@ const Category = (props) => {
           <Col>
             {/* <button onClick={showUpdateCategoryModal} className='btn btn-danger btn-sm me-1'>Delete</button>
             <button onClick={showUpdateCategoryModal} className='btn btn-info btn-sm'>Edit</button> */}
-            <Badge pill bg="danger" className="me-1 hand" onClick={deleteCategory}>Delete</Badge>
-            <Badge pill bg="info" className="hand" onClick={showUpdateCategoryModal}>Edit</Badge>
+            <Badge pill bg="danger" className="me-1 hand" onClick={deleteCategory}><MdDeleteForever></MdDeleteForever>Delete</Badge>
+            <Badge pill bg="info" className="hand" onClick={showUpdateCategoryModal}><RiEdit2Fill></RiEdit2Fill>Edit</Badge>
             {/* <SweetAlert2 {...swalProps} onConfirm={result => {
                     deleteCategoryConfirmed()
                 }}/> */}
@@ -308,7 +310,7 @@ const Category = (props) => {
         <Form.Label>Type</Form.Label>
         <Select placeholder="Select Type" className="mb-3" value={categoryType} onChange={setCategoryType} options={categoryTypeList} />
 
-        <InputFile label="Upload Image" type="file" name="image" onChange={handleCategoryImage} errorMsg="" />
+        <Input label="Upload Image" type="file" name="image" onChange={handleCategoryImage} errorMsg="" />
       </MyModal>
 
 

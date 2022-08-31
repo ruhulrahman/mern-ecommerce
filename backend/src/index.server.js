@@ -3,8 +3,11 @@ const app = express()
 const env = require('dotenv')
 // const bodyParser = require('body-parser')
 const { MongoClient, ServerApiVersion } = require('mongodb');
+
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin/auth');
+const pageRoutes = require('./routes/admin/page');
+
 const initialRoute = require('./routes/admin/initialRoute');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
@@ -45,8 +48,12 @@ app.use('/public', express.static(path.join(__dirname, 'uploads/category')))
 app.use('/public', express.static(path.join(__dirname, 'uploads/product')))
 
 // All router here
+// Admin Route
 app.use('/api', authRoutes)
 app.use('/api', adminRoutes)
+app.use('/api', pageRoutes)
+
+//User route
 app.use('/api', initialRoute)
 app.use('/api', categoryRoutes)
 app.use('/api', productRoutes)

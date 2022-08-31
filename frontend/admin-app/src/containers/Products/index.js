@@ -89,7 +89,7 @@ const Products = (props) => {
   })
 
   const handleProductImage = (e) => {
-    // console.log('e.target', e)
+    console.log('e.target', e)
     setProductImages([
       ...productImages,
       e.target.files[0]

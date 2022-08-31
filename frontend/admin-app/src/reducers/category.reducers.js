@@ -11,7 +11,7 @@ const initState = {
 const builNewCategories = (parentId, categories, category) => {
     let myCategories = []
 
-    console.log('category-reducer', category)
+    // console.log('category-reducer', category)
 
     if (!parentId) {
         return [
@@ -52,24 +52,20 @@ const builNewCategories = (parentId, categories, category) => {
 }
 
 const categoryReducer = (state = initState, action) => {
-    
+
     if (action.type === categoryConstants.GET_CATEGORY_REQUEST) {
         state = {
             ...state,
             loading: true,
         }
-    }
-
-    if (action.type === categoryConstants.GET_CATEGORY_SUCCESS) {
+    } else if (action.type === categoryConstants.GET_CATEGORY_SUCCESS) {
         state = {
             ...state,
             loading: false,
             success: true,
             categories: action.payload.categories,
         }
-    }
-
-    if (action.type === categoryConstants.GET_CATEGORY_FAILURE) {
+    } else if (action.type === categoryConstants.GET_CATEGORY_FAILURE) {
         state = {
             ...state,
             loading: false,
@@ -82,9 +78,7 @@ const categoryReducer = (state = initState, action) => {
             ...state,
             loading: true,
         }
-    }
-
-    if (action.type === categoryConstants.ADD_CATEGORY_SUCCESS) {
+    } else if (action.type === categoryConstants.ADD_CATEGORY_SUCCESS) {
         const category = action.payload.category
         const updateCategory = builNewCategories(category.parentId, state.categories, category)
         state = {
@@ -96,9 +90,7 @@ const categoryReducer = (state = initState, action) => {
         }
 
         // state.categories.push(action.payload.category)
-    }
-
-    if (action.type === categoryConstants.ADD_CATEGORY_FAILURE) {
+    } else if (action.type === categoryConstants.ADD_CATEGORY_FAILURE) {
         state = {
             ...state,
             loading: false,
@@ -111,19 +103,34 @@ const categoryReducer = (state = initState, action) => {
             ...state,
             loading: true,
         }
-    }
-
-    if (action.type === categoryConstants.UPDATE_CATEGORY_SUCCESS) {
+    } else if (action.type === categoryConstants.UPDATE_CATEGORY_SUCCESS) {
         state = {
             ...state,
             loading: false,
         }
-    }
-
-    if (action.type === categoryConstants.UPDATE_CATEGORY_FAILURE) {
+    } else if (action.type === categoryConstants.UPDATE_CATEGORY_FAILURE) {
         state = {
             ...state,
             loading: false,
+            error: action.payload.error,
+        }
+    }
+
+    if (action.type === categoryConstants.DELETE_CATEGORY_REQUEST) {
+        state = {
+            ...state,
+            loading: true,
+        }
+    } else if (action.type === categoryConstants.DELETE_CATEGORY_SUCCESS) {
+        state = {
+            ...state,
+            loading: false,
+        }
+    } else if (action.type === categoryConstants.DELETE_CATEGORY_FAILURE) {
+        state = {
+            ...state,
+            loading: false,
+            error: action.payload.error,
         }
     }
 

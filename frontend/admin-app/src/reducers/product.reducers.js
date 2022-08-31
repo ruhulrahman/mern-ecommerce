@@ -41,7 +41,7 @@ const productReducer = (state = initState, action) => {
     }
 
     if (action.type === productConstants.ADD_PRODUCT_SUCCESS) {
-        console.log('action.payload.product', action.payload.product)
+        // console.log('action.payload.product', action.payload.product)
         // const product = action.payload.product
         // const updateProduct = builNewCategories(product.parentId, state.categories, product)
         // const updateProduct = state.products.push(action.payload.product)

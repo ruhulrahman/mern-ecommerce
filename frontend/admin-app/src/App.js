@@ -13,6 +13,7 @@ import { isUserLoggedIn, getInitialData } from './actions';
 import Products from './containers/Products';
 import Orders from './containers/Orders';
 import Category from './containers/Category';
+import NewPage from './containers/NewPage';
 
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
@@ -34,6 +35,11 @@ function App() {
           <Route path="/" element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }/>
+          <Route path="/page" element={
+            <ProtectedRoute>
+              <NewPage/>
             </ProtectedRoute>
           }/>
           <Route path="/products" element={

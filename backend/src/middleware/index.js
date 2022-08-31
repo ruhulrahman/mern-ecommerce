@@ -1,4 +1,21 @@
 const jwt = require('jsonwebtoken');
+
+// File uploader library start 
+const multer  = require('multer')
+const path = require('path')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(path.dirname(__dirname), 'uploads'))
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, uniqueSuffix + '-' + file.originalname )
+    }
+})
+exports.upload = multer({ storage: storage })
+// File uploader library end 
+
 exports.requireSignin = (req, res, next) => {
 
     console.log('req.headers.authorization', req.headers.authorization)

@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from './store/index.js';
 import { BrowserRouter } from "react-router-dom";
 
+
 window.store = store
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

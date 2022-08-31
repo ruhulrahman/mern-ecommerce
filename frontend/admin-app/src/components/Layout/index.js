@@ -15,6 +15,7 @@ const Layout = (props) => {
               Menus
                 <ul>
                   <li><NavLink to='/' className='nav-link'>Home</NavLink></li>
+                  <li><NavLink to='/page' className='nav-link'>Page</NavLink></li>
                   <li><NavLink to='/category' className='nav-link'>Category</NavLink></li>
                   <li><NavLink to='/products' className='nav-link'>Products</NavLink></li>
                   <li><NavLink to='/orders' className='nav-link'>orders</NavLink></li>
