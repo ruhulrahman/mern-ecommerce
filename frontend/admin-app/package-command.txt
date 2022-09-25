@@ -7,3 +7,4 @@
 7.  npm i react-icons --save
 //8.  npm i react-sweetalert2 --save
 8.  npm install sweetalert2 --save
+9.  npm install react-loader-spinner --save

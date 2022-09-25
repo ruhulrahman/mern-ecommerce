@@ -20,8 +20,12 @@ const MenuHeader = (props) => {
                <span>{item.name}</span>
             } */}
             {
+              /* item.parentId ? 
+              <NavLink to={`/${item.slug}?categoryId=${item._id}&type=${item.type}`}>{item.name}</NavLink>
+              <NavLink to={`/${item.slug}?categoryId=${item._id}&type=${item.type}`}>{item.name}</NavLink> :
+               <span>{item.name}</span> */
               item.parentId ? 
-              <NavLink to={`/${item.slug}`}>{item.name}</NavLink> :
+              <a href={`/${item.slug}?categoryId=${item._id}&type=${item.type}`}>{item.name}</a> :
                <span>{item.name}</span>
             }
             {item.children.length > 0 ? (

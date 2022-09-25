@@ -10,6 +10,6 @@ router.post('/page/create', requireSignin, adminMiddleware, upload.fields([
     { name: 'products' },
 ]), createPage)
 
-router.get('/page/getPage', requireSignin, getPages)
+router.get('/page/:cId/:type', getPages)
 
 module.exports = router

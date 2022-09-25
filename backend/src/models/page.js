@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const pageSchema = new mongoose.Schema({
 
-    categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
+    categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true, unique: true },
     title: { type: String, required: true, trim: true },
     desc: { type: String, required: true, trim: true },
     banner: { type: String },

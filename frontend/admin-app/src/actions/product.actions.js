@@ -47,3 +47,30 @@ export const addProduct = (formData) => {
         }
     }
 }
+
+export const getPages = (payload) => {
+    const { categoryId, type } = payload
+    return async (dispatch) => {
+        // dispatch({ type: pageConstants.GET_PAGE_REQUEST })
+        const res = await RestApi.get(`/page/${categoryId}/${type}`)
+        console.log('res.data', res.data)
+        if (res.status === 200) {
+            // dispatch({
+            //     type: pageConstants.GET_PAGE_SUCCESS,
+            //     payload: {
+            //         message: res.data.message,
+            //         page: res.data.data,
+            //     }
+            // })
+        } else {
+            if (res.status === 400) {
+                // dispatch({
+                //     type: pageConstants.GET_PAGE_FAILURE,
+                //     payload: {
+                //         error: res.data.error
+                //     }
+                // })
+            } 
+        }
+    }
+}

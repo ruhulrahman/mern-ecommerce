@@ -9,11 +9,14 @@ import Input from "../../components/UI/Input";
 import InputFile from "../../components/UI/InputFile";
 import { useDispatch, useSelector } from 'react-redux';
 import linearCategory from '../../helpers/linearCategory';
-import { addPage } from '../../actions/page.actions';
+import { addPage, getPages } from '../../actions/page.actions';
+import { CirclesWithBar } from  'react-loader-spinner'
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 
 const NewPage = (props) => {
   const dispatch = useDispatch()
+  const page = useSelector(state => state.page)
 
   const [show, setShow] = useState(false)
   const [categories, setCategories] = useState([])
@@ -24,24 +27,36 @@ const NewPage = (props) => {
   const [type, setType] = useState('')
   const [banners, setBanners] = useState([])
   const [products, setProducts] = useState([])
+
+  
+  const clearFormData = () => {
+    setCategoryId(null)
+    setTitle('')
+    setDesc('')
+    setType('')
+    setBanners([])
+    setProducts([])
+  }
   
   const category = useSelector(state => state.category)
   
   useEffect(() => {
     setCategories(linearCategory(category.categories))
+    // dispatch(getPages())
   }, [category])
 
   // console.log({categories})
   
 
   const closeModal = () => setShow(false);
-  const showModal = () => setShow(true);
+  const showModal = () => setShow(true)
 
   const saveNewPage = (event) => {
     event.preventDefault()
+    console.log('categoryId', categoryId)
 
     const formData = new FormData()
-    formData.append('categoryId', categoryId)
+    formData.append('categoryId', categoryId ? categoryId.value : '')
     formData.append('title', title)
     formData.append('desc', desc)
     formData.append('type', type)
@@ -53,17 +68,23 @@ const NewPage = (props) => {
     })
 
     dispatch(addPage(formData))
-    closeModal()
+    if (!page.loading) {
+      closeModal()
+      clearFormData()
+    }
   }
 
   const onChangeCategory = (e) => {
+    console.log('e.value', e.value)
+    console.log('categories', categories)
+    setCategoryId(e)
     const category = categories.find(item => item.id === e.value)
     if (category) {
       if (category.type) {
+        console.log('category.type', category.type)
         setType(category.type)
       }
     }
-    setCategoryId(e.value)
   }
 
   const handleBannerImage = (e) => {
@@ -86,9 +107,24 @@ const NewPage = (props) => {
     return (
 
       <MyModal modalTitle="Create New Page" show={show} closeModal={closeModal} handleClose={saveNewPage}>
-
+ 
+        {
+          page.loading ?
+          <CirclesWithBar
+            className="text-center"
+            height = "80"
+            width = "80"
+            radius = "9"
+            color = 'green'
+            ariaLabel = 'three-dots-loading'     
+            wrapperStyle
+            wrapperClass
+          />
+          : ''
+        }
         <Form.Label>Category</Form.Label>
         <Select placeholder="Select Category" className="mb-3" value={categoryId} onChange={onChangeCategory} options={categories} />
+        {/* <Select placeholder="Select Category" className="mb-3" value={categoryId} onChange={setCategoryId} options={categories} /> */}
         <Input label="Page Title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter page title" errorMsg="" />
         <Input label="Description" type="text" value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Enter page description" errorMsg="" />
         {
@@ -127,8 +163,25 @@ const NewPage = (props) => {
             <Button variant="primary" onClick={showModal}>Create New Page</Button>
           </Col>
         </Row>
-
-        {renderPageModal()}
+        {
+          page.loading ? 
+          <CirclesWithBar
+            className="text-center"
+            height="100"
+            width="100"
+            color="#4fa94d"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            outerCircleColor=""
+            innerCircleColor=""
+            barColor=""
+            ariaLabel='circles-with-bar-loading'
+          />
+          :
+          renderPageModal()
+        }
+        {/* {renderPageModal()} */}
 
       </Container>
     </Layout>

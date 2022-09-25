@@ -15,6 +15,8 @@ const initState = {
         under30k: [],
         above50k: [],
     },
+    pageFetchRequest: false,
+    page: {}
 }
 
 const productReducer = (state = initState, action) => {
@@ -54,6 +56,29 @@ const productReducer = (state = initState, action) => {
         }
     }
 
+    if (action.type === productConstants.GET_PRODUCT_PAGE_REQUEST) {
+        state = {
+            ...state,
+            pageFetchRequest: true,
+        }
+    }
+
+    if (action.type === productConstants.GET_PRODUCT_PAGE_SUCCESS) {
+        state = {
+            ...state,
+            pageFetchRequest: false,
+            success: true,
+            page: action.payload.page,
+        }
+    }
+
+    if (action.type === productConstants.GET_PRODUCT_PAGE_FAILURE) {
+        state = {
+            ...state,
+            pageFetchRequest: false,
+            error: action.payload.error,
+        }
+    }
     return state
 }
 
